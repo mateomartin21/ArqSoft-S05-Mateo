@@ -1,0 +1,30 @@
+﻿[
+  {
+    "Id": 1,
+    "Nombre": "Valeria",
+    "Apellido": "Castro",
+    "Especialidad": "Neurología",
+    "NumeroLicencia": "NE-45091"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Andrés",
+    "Apellido": "Morales",
+    "Especialidad": "Dermatología",
+    "NumeroLicencia": "DE-88234"
+  },
+  {
+    "Id": 3,
+    "Nombre": "Elena",
+    "Apellido": "Ruiz",
+    "Especialidad": "Traumatología",
+    "NumeroLicencia": "TR-56712"
+  },
+  {
+    "Id": 4,
+    "Nombre": "Miguel",
+    "Apellido": "Herrera",
+    "Especialidad": "Oncología",
+    "NumeroLicencia": "ON-11983"
+  }
+]

@@ -1,0 +1,30 @@
+﻿[
+  {
+    "Id": 1,
+    "Nombre": "Carlos",
+    "Apellido": "Sánchez",
+    "Email": "carlos.s@ejemplo.com",
+    "Telefono": "555-1234"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Laura",
+    "Apellido": "Gómez",
+    "Email": "lgomez@correo.net",
+    "Telefono": "555-5678"
+  },
+  {
+    "Id": 3,
+    "Nombre": "Diego",
+    "Apellido": "Fernández",
+    "Email": "diego.f@mail.com",
+    "Telefono": "555-8765"
+  },
+  {
+    "Id": 4,
+    "Nombre": "Sofía",
+    "Apellido": "Ramírez",
+    "Email": "sofia.r@webmail.com",
+    "Telefono": "555-4321"
+  }
+]
