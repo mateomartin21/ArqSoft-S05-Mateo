@@ -1,39 +1,38 @@
 ﻿[
-  [
-    {
-      "Id": 1,
-      "PacienteId": 5,
-      "MedicoId": 3,
-      "Fecha": "2026-07-10",
-      "Hora": "08:30",
-      "Motivo": "Control de presión arterial",
-      "Estado": "Confirmada"
-    },
-    {
-      "Id": 2,
-      "PacienteId": 8,
-      "MedicoId": 1,
-      "Fecha": "2026-07-12",
-      "Hora": "15:45",
-      "Motivo": "Curación de herida",
-      "Estado": "Completada"
-    },
-    {
-      "Id": 3,
-      "PacienteId": 12,
-      "MedicoId": 4,
-      "Fecha": "2026-07-15",
-      "Hora": "11:30",
-      "Motivo": "Lectura de radiografías",
-      "Estado": "Cancelada"
-    },
-    {
-      "Id": 4,
-      "PacienteId": 2,
-      "MedicoId": 2,
-      "Fecha": "2026-07-18",
-      "Hora": "16:15",
-      "Motivo": "Consulta de especialidad",
-      "Estado": "Pendiente"
-    }
-  ]
+  {
+    "Id": 1,
+    "PacienteId": 5,
+    "MedicoId": 3,
+    "Fecha": "2026-07-10",
+    "Hora": "08:30",
+    "Motivo": "Control de presión arterial",
+    "Estado": "Confirmada"
+  },
+  {
+    "Id": 2,
+    "PacienteId": 8,
+    "MedicoId": 1,
+    "Fecha": "2026-07-12",
+    "Hora": "15:45",
+    "Motivo": "Curación de herida",
+    "Estado": "Completada"
+  },
+  {
+    "Id": 3,
+    "PacienteId": 12,
+    "MedicoId": 4,
+    "Fecha": "2026-07-15",
+    "Hora": "11:30",
+    "Motivo": "Lectura de radiografías",
+    "Estado": "Cancelada"
+  },
+  {
+    "Id": 4,
+    "PacienteId": 2,
+    "MedicoId": 2,
+    "Fecha": "2026-07-18",
+    "Hora": "16:15",
+    "Motivo": "Consulta de especialidad",
+    "Estado": "Pendiente"
+  }
+]

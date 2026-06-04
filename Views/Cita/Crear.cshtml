@@ -1,0 +1,74 @@
+﻿@model CitasApp.Models.Cita
+@using CitasApp.Models
+
+@{
+    var pacientes = ViewBag.Pacientes as List<Paciente>;
+    var medicos = ViewBag.Medicos as List<Medico>;
+    ViewData["Title"] = "Nueva cita";
+}
+
+<h1>Nueva cita</h1>
+
+<form asp-action="Crear" method="post">
+    <div>
+        <label asp-for="PacienteId">Paciente</label>
+        <select asp-for="PacienteId" required>
+            <option value="">-- Seleccionar --</option>
+            @foreach (var p in pacientes!)
+            {
+                <option value="@p.Id">@p.Nombre @p.Apellido</option>
+            }
+        </select>
+        <span asp-validation-for="PacienteId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="MedicoId">Médico</label>
+        <select asp-for="MedicoId" required>
+            <option value="">-- Seleccionar --</option>
+            @foreach (var m in medicos!)
+            {
+                <option value="@m.Id">@m.Nombre @m.Apellido — @m.Especialidad</option>
+            }
+        </select>
+        <span asp-validation-for="MedicoId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Fecha">Fecha</label>
+        <input asp-for="Fecha" type="date" required />
+        <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Hora">Hora</label>
+        <input asp-for="Hora" type="time" required />
+        <span asp-validation-for="Hora" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Motivo">Motivo</label>
+        <input asp-for="Motivo" maxlength="200" required />
+        <span asp-validation-for="Motivo" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Estado">Estado</label>
+        <select asp-for="Estado">
+            <option>Pendiente</option>
+            <option>Confirmada</option>
+            <option>Cancelada</option>
+            <option>Completada</option>
+        </select>
+    </div>
+
+    <br />
+    <button type="submit">Guardar cita</button>
+    <a asp-action="Index">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
