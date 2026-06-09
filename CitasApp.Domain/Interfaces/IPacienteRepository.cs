@@ -1,6 +1,6 @@
-﻿using CitasApp.Models;
+using CitasApp.Domain.Models;
 
-namespace CitasApp.Interfaces
+namespace CitasApp.Domain.Interfaces
 {
     public interface IPacienteRepository
     {

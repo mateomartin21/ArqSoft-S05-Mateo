@@ -1,5 +1,5 @@
-ï»¿@model CitasApp.Models.Cita
-@using CitasApp.Models
+@model CitasApp.Domain.Models.Cita
+@using CitasApp.Domain.Models
 
 @{
     var pacientes = ViewBag.Pacientes as List<Paciente>;
@@ -23,12 +23,12 @@
     </div>
 
     <div>
-        <label asp-for="MedicoId">MÃ©dico</label>
+        <label asp-for="MedicoId">Médico</label>
         <select asp-for="MedicoId" required>
             <option value="">-- Seleccionar --</option>
             @foreach (var m in medicos!)
             {
-                <option value="@m.Id">@m.Nombre @m.Apellido â€” @m.Especialidad</option>
+                <option value="@m.Id">@m.Nombre @m.Apellido — @m.Especialidad</option>
             }
         </select>
         <span asp-validation-for="MedicoId" class="text-danger"></span>
@@ -72,3 +72,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+

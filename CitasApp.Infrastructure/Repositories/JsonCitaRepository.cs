@@ -1,20 +1,20 @@
-﻿using CitasApp.Interfaces;
-using CitasApp.Models;
+using CitasApp.Domain.Interfaces;
+using CitasApp.Domain.Models;
+using Microsoft.AspNetCore.Hosting;
 using System.Text.Json;
 
-namespace CitasApp.Repositories
+namespace CitasApp.Infrastructure.Repositories
 {
     public class JsonCitaRepository : ICitaRepository
     {
         private readonly string _path;
         private readonly JsonSerializerOptions _options = new() { WriteIndented = true };
 
-        public JsonCitaRepository(IWebHostEnvironment env)
+        public JsonCitaRepository(string dataPath)
         {
-            _path = Path.Combine(env.ContentRootPath, "data", "citas.json");
+            _path = Path.Combine(dataPath, "citas.json");
         }
-
-        // ── Helpers privados ────────────────────────────────────────────────
+        // -- Helpers privados ------------------------------------------------
 
         private List<CitaJson> LeerJson()
         {
@@ -39,7 +39,7 @@ namespace CitasApp.Repositories
             Estado = c.Estado
         };
 
-        // ── Métodos de la interfaz ──────────────────────────────────────────
+        // -- M�todos de la interfaz ------------------------------------------
 
         public List<Cita> ObtenerTodos() =>
             LeerJson().Select(MapearACita).ToList();

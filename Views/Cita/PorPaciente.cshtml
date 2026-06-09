@@ -1,5 +1,5 @@
-﻿@model List<CitasApp.Models.Cita>
-@using CitasApp.Models
+@model List<CitasApp.Domain.Models.Cita>
+@using CitasApp.Domain.Models
 
 @{
     var pacientes = ViewBag.Pacientes as List<Paciente>;
@@ -13,7 +13,7 @@
     <tr>
         <th>Fecha</th>
         <th>Hora</th>
-        <th>Médico</th>
+        <th>M�dico</th>
         <th>Motivo</th>
         <th>Estado</th>
     </tr>
@@ -23,11 +23,13 @@
         <tr>
             <td>@c.Fecha.ToString("dd/MM/yyyy")</td>
             <td>@c.Hora.ToString("HH:mm")</td>
-            <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "—")</td>
+            <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "�")</td>
             <td>@c.Motivo</td>
             <td>@c.Estado</td>
         </tr>
     }
 </table>
 <br />
-<a asp-controller="Cita" asp-action="Index">← Ver todas las citas</a>
+<a asp-controller="Cita" asp-action="Index">? Ver todas las citas</a>
+
+

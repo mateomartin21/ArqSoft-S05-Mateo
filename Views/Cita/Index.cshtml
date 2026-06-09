@@ -1,5 +1,5 @@
-ï»¿@model List<CitasApp.Models.Cita>
-@using CitasApp.Models
+@model List<CitasApp.Domain.Models.Cita>
+@using CitasApp.Domain.Models
 
 @{
     var pacientes = ViewBag.Pacientes as List<Paciente>;
@@ -17,7 +17,7 @@
         <th>Fecha</th>
         <th>Hora</th>
         <th>Paciente</th>
-        <th>MÃ©dico</th>
+        <th>Médico</th>
         <th>Motivo</th>
         <th>Estado</th>
         <th>Acciones</th>
@@ -29,13 +29,13 @@
         <tr>
             <td>@c.Fecha.ToString("dd/MM/yyyy")</td>
             <td>@c.Hora.ToString("HH:mm")</td>
-            <td>@(paciente != null ? $"{paciente.Nombre} {paciente.Apellido}" : "â€”")</td>
-            <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "â€”")</td>
+            <td>@(paciente != null ? $"{paciente.Nombre} {paciente.Apellido}" : "—")</td>
+            <td>@(medico != null ? $"{medico.Nombre} {medico.Apellido}" : "—")</td>
             <td>@c.Motivo</td>
             <td>@c.Estado</td>
             <td>
                 <form asp-action="Eliminar" method="post"
-                      onsubmit="return confirm('Â¿Eliminar esta cita?')">
+                      onsubmit="return confirm('¿Eliminar esta cita?')">
                     <input type="hidden" name="id" value="@c.Id" />
                     <button type="submit">Eliminar</button>
                 </form>
@@ -43,3 +43,5 @@
         </tr>
     }
 </table>
+
+

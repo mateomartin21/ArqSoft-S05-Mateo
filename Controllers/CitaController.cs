@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CitasApp.Interfaces;
-using CitasApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using CitasApp.Domain.Interfaces;
+using CitasApp.Domain.Models;
 
 namespace CitasApp.Controllers
 {
@@ -19,7 +19,7 @@ namespace CitasApp.Controllers
             _medicoRepo = medicoRepo;
         }
 
-        // ── Listar todas ────────────────────────────────────────────────────
+        // -- Listar todas ----------------------------------------------------
         public IActionResult Index()
         {
             ViewBag.Pacientes = _pacienteRepo.ObtenerTodos();
@@ -27,7 +27,7 @@ namespace CitasApp.Controllers
             return View(_citaRepo.ObtenerTodos());
         }
 
-        // ── Filtrar por paciente ────────────────────────────────────────────
+        // -- Filtrar por paciente --------------------------------------------
         public IActionResult PorPaciente(int pacienteId)
         {
             ViewBag.Pacientes = _pacienteRepo.ObtenerTodos();
@@ -35,7 +35,7 @@ namespace CitasApp.Controllers
             return View(_citaRepo.ObtenerPorPaciente(pacienteId));
         }
 
-        // ── Crear: formulario ───────────────────────────────────────────────
+        // -- Crear: formulario -----------------------------------------------
         [HttpGet]
         public IActionResult Crear()
         {
@@ -44,7 +44,7 @@ namespace CitasApp.Controllers
             return View();
         }
 
-        // ── Crear: guardar ──────────────────────────────────────────────────
+        // -- Crear: guardar --------------------------------------------------
         [HttpPost]
         public IActionResult Crear(Cita cita)
         {
@@ -59,7 +59,7 @@ namespace CitasApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ── Eliminar ────────────────────────────────────────────────────────
+        // -- Eliminar --------------------------------------------------------
         [HttpPost]
         public IActionResult Eliminar(int id)
         {

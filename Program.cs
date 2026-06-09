@@ -1,14 +1,15 @@
-using CitasApp.Interfaces;
-using CitasApp.Repositories;
+using CitasApp.Domain.Interfaces;
+using CitasApp.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IPacienteRepository, JsonPacienteRepository>();
-builder.Services.AddScoped<IMedicoRepository, JsonMedicoRepository>();
-builder.Services.AddScoped<ICitaRepository, JsonCitaRepository>();
+var dataPath = Path.Combine(builder.Environment.ContentRootPath, "data");
+builder.Services.AddScoped<IPacienteRepository>(_ => new JsonPacienteRepository(dataPath));
+builder.Services.AddScoped<IMedicoRepository>(_ => new JsonMedicoRepository(dataPath));
+builder.Services.AddScoped<ICitaRepository>(_ => new JsonCitaRepository(dataPath));
 
 var app = builder.Build();
 

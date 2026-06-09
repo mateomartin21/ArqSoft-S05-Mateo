@@ -1,4 +1,4 @@
-namespace CitasApp.Models
+namespace CitasApp.Domain.Models
 {
     public class ErrorViewModel
     {
