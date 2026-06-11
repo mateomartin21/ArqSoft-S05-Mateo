@@ -1,0 +1,429 @@
+/* ============================================================
+   CitasApp — Hoja de estilos personalizada
+   Tema: Clínica médica · Azul marino + blanco + acento verde
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@600&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+    --navy: #0f2d4a;
+    --navy-mid: #1a4a6e;
+    --accent: #00a878;
+    --accent-lt: #e6f7f3;
+    --danger: #e05252;
+    --gray-100: #f5f7fa;
+    --gray-200: #e8ecf1;
+    --gray-500: #7a8899;
+    --gray-800: #2c3a4a;
+    --white: #ffffff;
+    --radius: 8px;
+    --shadow: 0 2px 12px rgba(15,45,74,.10);
+}
+
+/* ── Reset base ─────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-800);
+    background: var(--gray-100);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+    background: var(--navy) !important;
+    padding: 0 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    min-height: 60px;
+}
+
+.navbar-brand {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--white) !important;
+    letter-spacing: -.3px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+    .navbar-brand::before {
+        content: '⚕';
+        font-size: 1.1rem;
+        color: var(--accent);
+    }
+
+.navbar-nav .nav-link {
+    color: rgba(255,255,255,.80) !important;
+    font-weight: 500;
+    font-size: .875rem;
+    padding: 1.1rem .9rem !important;
+    letter-spacing: .2px;
+    transition: color .2s;
+    border-bottom: 2px solid transparent;
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: var(--white) !important;
+        border-bottom-color: var(--accent);
+    }
+
+/* ── Layout principal ───────────────────────────────────────── */
+.container, .container-lg {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+main {
+    flex: 1;
+}
+
+/* ── Hero (página de inicio) ────────────────────────────────── */
+.hero {
+    text-align: center;
+    padding: 5rem 1rem 4rem;
+}
+
+    .hero h1 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: .75rem;
+    }
+
+    .hero p {
+        color: var(--gray-500);
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+    }
+
+.hero-cards {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+}
+
+.hero-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem 2.5rem;
+    text-decoration: none;
+    color: var(--gray-800);
+    transition: transform .2s, box-shadow .2s;
+    border-top: 3px solid var(--accent);
+    min-width: 180px;
+}
+
+    .hero-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(15,45,74,.15);
+        color: var(--navy);
+    }
+
+    .hero-card .icon {
+        font-size: 2rem;
+        margin-bottom: .5rem;
+    }
+
+    .hero-card .label {
+        font-weight: 600;
+        font-size: .95rem;
+    }
+
+/* ── Tarjeta de contenido ───────────────────────────────────── */
+.card-panel {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Encabezados de página ──────────────────────────────────── */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+    .page-header h1 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--navy);
+    }
+
+h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--navy);
+}
+
+/* ── Tablas ─────────────────────────────────────────────────── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+}
+
+thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    padding: .85rem 1rem;
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--gray-200);
+    transition: background .15s;
+}
+
+    tbody tr:hover {
+        background: var(--accent-lt);
+    }
+
+tbody td {
+    padding: .8rem 1rem;
+    vertical-align: middle;
+    color: var(--gray-800);
+}
+
+/* ── Botones ────────────────────────────────────────────────── */
+.btn, a.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .5rem 1.1rem;
+    border-radius: var(--radius);
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, transform .1s;
+    border: none;
+}
+
+    .btn:active {
+        transform: scale(.97);
+    }
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--white) !important;
+}
+
+    .btn-primary:hover {
+        background: #008f66;
+    }
+
+.btn-secondary {
+    background: var(--navy);
+    color: var(--white) !important;
+}
+
+    .btn-secondary:hover {
+        background: var(--navy-mid);
+    }
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--navy);
+    color: var(--navy) !important;
+}
+
+    .btn-outline:hover {
+        background: var(--navy);
+        color: var(--white) !important;
+    }
+
+.btn-danger {
+    background: var(--danger);
+    color: var(--white) !important;
+}
+
+    .btn-danger:hover {
+        background: #c43e3e;
+    }
+
+.btn-sm {
+    padding: .3rem .75rem;
+    font-size: .8rem;
+}
+
+/* ── Links de acción en tabla ───────────────────────────────── */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: var(--navy);
+    }
+
+/* ── Formularios ────────────────────────────────────────────── */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: .35rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: .6rem .9rem;
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius);
+    font-size: .9rem;
+    font-family: inherit;
+    color: var(--gray-800);
+    background: var(--white);
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+}
+
+    input:focus, select:focus, textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0,168,120,.15);
+    }
+
+/* ── Badges de estado ───────────────────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: .2rem .65rem;
+    border-radius: 99px;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+}
+
+.badge-confirmada {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge-pendiente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-cancelada {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-completada {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+/* ── Alertas ────────────────────────────────────────────────── */
+.alert {
+    padding: .9rem 1.2rem;
+    border-radius: var(--radius);
+    font-size: .9rem;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background: #d1fae5;
+    color: #065f46;
+    border-left: 4px solid var(--accent);
+}
+
+.alert-danger {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid var(--danger);
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+footer {
+    background: var(--navy);
+    color: rgba(255,255,255,.55);
+    text-align: center;
+    padding: 1rem;
+    font-size: .8rem;
+    margin-top: auto;
+}
+
+    footer a {
+        color: var(--accent);
+    }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--gray-200);
+        border-radius: var(--radius);
+    }
+
+    tbody td {
+        display: block;
+        text-align: right;
+        padding: .5rem 1rem;
+    }
+
+        tbody td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: 600;
+            color: var(--navy);
+        }
+}
