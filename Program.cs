@@ -1,3 +1,4 @@
+using CitasApp.Application.Services;
 using CitasApp.Domain.Interfaces;
 using CitasApp.Infrastructure.Repositories;
 
@@ -30,6 +31,9 @@ builder.Services.AddSingleton<IPacienteRepository>(_ => new SqlitePacienteReposi
 builder.Services.AddSingleton<IMedicoRepository>  (_ => new SqliteMedicoRepository(sqlitePath));
 builder.Services.AddSingleton<ICitaRepository>    (_ => new SqliteCitaRepository(sqlitePath));
 */
+builder.Services.AddScoped<PacienteService>();
+builder.Services.AddScoped<MedicoService>();
+builder.Services.AddScoped<CitaService>();
 
 builder.Services.AddControllersWithViews();
 
