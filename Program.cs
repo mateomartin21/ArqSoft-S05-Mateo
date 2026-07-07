@@ -20,12 +20,16 @@ builder.Services.AddSingleton<IMedicoRepository,   JsonMedicoRepository>();
 builder.Services.AddSingleton<ICitaRepository,     JsonCitaRepository>();
 */
 
-// ▶ Bloque B — CSV con Decorator (activo)
-builder.Services.AddSingleton<IPacienteRepository>(_ =>
-    new LoggingPacienteRepository(new CsvPacienteRepository(csvPacientes)));
+// ▶ Bloque B — CSV con Factory + Decorator (activo)
+builder.Services.AddSingleton<IPacienteRepository>(sp =>
+{
+    var env = sp.GetRequiredService<IWebHostEnvironment>();
+    var repo = RepositoryFactory.CrearPacienteRepository(
+        builder.Environment.EnvironmentName, env);
+    return new LoggingPacienteRepository(repo);
+});
 builder.Services.AddSingleton<IMedicoRepository>(_ => new CsvMedicoRepository(csvMedicos));
 builder.Services.AddSingleton<ICitaRepository>(_ => new CsvCitaRepository(csvCitas));
-
 // ▶ Bloque C — SQLite
 /*
 builder.Services.AddSingleton<IPacienteRepository>(_ => new SqlitePacienteRepository(sqlitePath));
