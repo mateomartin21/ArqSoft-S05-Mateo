@@ -1,4 +1,4 @@
-using CitasApp.Application.Services;
+﻿using CitasApp.Application.Services;
 using CitasApp.Domain.Interfaces;
 using CitasApp.Infrastructure.Repositories;
 
@@ -20,8 +20,9 @@ builder.Services.AddSingleton<IMedicoRepository,   JsonMedicoRepository>();
 builder.Services.AddSingleton<ICitaRepository,     JsonCitaRepository>();
 */
 
-// ▶ Bloque B — CSV (activo)
-builder.Services.AddSingleton<IPacienteRepository>(_ => new CsvPacienteRepository(csvPacientes));
+// ▶ Bloque B — CSV con Decorator (activo)
+builder.Services.AddSingleton<IPacienteRepository>(_ =>
+    new LoggingPacienteRepository(new CsvPacienteRepository(csvPacientes)));
 builder.Services.AddSingleton<IMedicoRepository>(_ => new CsvMedicoRepository(csvMedicos));
 builder.Services.AddSingleton<ICitaRepository>(_ => new CsvCitaRepository(csvCitas));
 
