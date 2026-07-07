@@ -1,6 +1,5 @@
 ﻿# Diagramas de arquitectura C4 — CitasApp
 
-Estos diagramas reflejan el estado real del código de esta rama.
 
 ## Nivel 1 — Contexto del sistema
 
@@ -34,53 +33,60 @@ C4Container
     Rel(api, datos, "Lee/escribe")
 ```
 
-## Nivel 3 — Componentes dentro de CitasApp.Web
+## Nivel 3 — Componentes dentro de CitasApp
 
 ```mermaid
-C4Component
-    title Nivel 3 - Componentes dentro de CitasApp.Web
+flowchart TB
+    subgraph WEB["CitasApp.Web"]
+        direction LR
+        Program["Program.cs<br/>(Composition Root)"]
+        CitaCtrl["CitaController"]
+        PacienteCtrl["PacienteController"]
+        MedicoCtrl["MedicoController"]
+    end
 
-    Container_Boundary(web, "CitasApp.Web") {
-        Component(citaCtrl, "CitaController", "ASP.NET Core Controller", "Lista, crea, filtra y elimina citas")
-        Component(pacienteCtrl, "PacienteController", "ASP.NET Core Controller", "Lista y muestra detalle de pacientes")
-        Component(medicoCtrl, "MedicoController", "ASP.NET Core Controller", "Lista y muestra detalle de medicos")
-        Component(program, "Program.cs", "Composition Root", "Configura la inyeccion de dependencias")
-    }
+    subgraph APP["CitasApp.Application"]
+        Services["Paciente/Medico/CitaService<br/>(registrados en DI,<br/>sin uso desde Web aun)"]
+    end
 
-    Container_Boundary(domain, "CitasApp.Domain") {
-        Component(iPacRepo, "IPacienteRepository", "Interface")
-        Component(iMedRepo, "IMedicoRepository", "Interface")
-        Component(iCitaRepo, "ICitaRepository", "Interface")
-        Component(iObs, "ICitaObserver", "Interface")
-    }
+    subgraph DOMAIN["CitasApp.Domain — nucleo"]
+        direction LR
+        IPaciente["IPacienteRepository"]
+        IMedico["IMedicoRepository"]
+        ICita["ICitaRepository"]
+        IObs["ICitaObserver"]
+    end
 
-    Container_Boundary(app, "CitasApp.Application") {
-        Component(services, "Paciente/Medico/CitaService", "Application Services", "Registrados en DI; aun no consumidos por los Controllers MVC")
-    }
+    subgraph INFRA["CitasApp.Infrastructure"]
+        direction LR
+        Factory["RepositoryFactory<br/>(Factory Method)"]
+        ConcretePac["Json/SqlitePacienteRepository"]
+        Logging["LoggingPacienteRepository<br/>(Decorator)"]
+        CsvMed["CsvMedicoRepository"]
+        CsvCita["CsvCitaRepository"]
+        EmailObs["EmailObserver<br/>(Observer)"]
+        SmsObs["SmsObserver<br/>(Observer)"]
+    end
 
-    Container_Boundary(infra, "CitasApp.Infrastructure") {
-        Component(factory, "RepositoryFactory", "Factory Method", "Crea Json o Sqlite segun el entorno")
-        Component(logging, "LoggingPacienteRepository", "Decorator", "Agrega logging sobre IPacienteRepository")
-        Component(csvMed, "CsvMedicoRepository", "Repository", "Instanciado directo, sin Factory")
-        Component(csvCita, "CsvCitaRepository", "Repository", "Instanciado directo, sin Factory")
-        Component(emailObs, "EmailObserver", "Observer", "Implementa ICitaObserver; aun sin conectar a un subject")
-        Component(smsObs, "SmsObserver", "Observer", "Implementa ICitaObserver; aun sin conectar a un subject")
-    }
+    CitaCtrl --> ICita
+    PacienteCtrl --> IPaciente
+    MedicoCtrl --> IMedico
+    Services --> IPaciente
+    Program -.registra.-> Services
 
-    Rel(citaCtrl, iCitaRepo, "Usa")
-    Rel(pacienteCtrl, iPacRepo, "Usa")
-    Rel(medicoCtrl, iMedRepo, "Usa")
+    Program -.compone.-> Factory
+    Factory --> ConcretePac
+    ConcretePac --> Logging
+    Logging --> IPaciente
 
-    Rel(program, factory, "Configura (Bloque B activo)")
-    Rel(program, logging, "Envuelve resultado del Factory")
-    Rel(program, csvMed, "Instancia directamente")
-    Rel(program, csvCita, "Instancia directamente")
-    Rel(program, services, "Registra en DI (AddScoped)")
+    Program -.compone.-> CsvMed
+    Program -.compone.-> CsvCita
+    CsvMed --> IMedico
+    CsvCita --> ICita
 
-    Rel(factory, iPacRepo, "Retorna implementacion de")
-    Rel(logging, iPacRepo, "Implementa")
-    Rel(csvMed, iMedRepo, "Implementa")
-    Rel(csvCita, iCitaRepo, "Implementa")
-    Rel(emailObs, iObs, "Implementa")
-    Rel(smsObs, iObs, "Implementa")
+    EmailObs --> IObs
+    SmsObs --> IObs
+
+    classDef patron fill:#fff3cd,stroke:#333;
+    class Factory,Logging,EmailObs,SmsObs patron;
 ```
