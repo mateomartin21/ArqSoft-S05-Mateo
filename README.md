@@ -179,3 +179,10 @@ Todo el código fue revisado, comprendido y validado por el autor. La lógica de
 Tecnológico de Software  
 TSU en Desarrollo e Innovación de Software · Grupo 3A  
 Junio 2026
+
+---
+
+## Diagramas de arquitectura (C4)
+
+Ver los diagramas C4 (Nivel 1, 2 y 3, en Mermaid) en [docs/diagrama-arquitectura.md](docs/diagrama-arquitectura.md).
+
