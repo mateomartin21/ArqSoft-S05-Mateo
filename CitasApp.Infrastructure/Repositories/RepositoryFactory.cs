@@ -5,40 +5,31 @@ namespace CitasApp.Infrastructure.Repositories
 {
     public static class RepositoryFactory
     {
-        public static IPacienteRepository CrearPacienteRepository(
-            string entorno, IWebHostEnvironment env)
-        {
-            var dataFolder = Path.Combine(env.ContentRootPath, "data");
+        private static string ObtenerDataFolder(IWebHostEnvironment env) =>
+            Path.Combine(env.ContentRootPath, "data");
 
-            return entorno switch
-            {
-                "Production" => new SqlitePacienteRepository(dataFolder),
-                _ => new JsonPacienteRepository(dataFolder)
-            };
+        public static IPacienteRepository CrearPacienteRepository(string entorno, IWebHostEnvironment env)
+        {
+            var dataFolder = ObtenerDataFolder(env);
+            return entorno == "Production"
+                ? new SqlitePacienteRepository(dataFolder)
+                : new JsonPacienteRepository(dataFolder);
         }
 
-        public static IMedicoRepository CrearMedicoRepository(
-            string entorno, IWebHostEnvironment env)
+        public static IMedicoRepository CrearMedicoRepository(string entorno, IWebHostEnvironment env)
         {
-            var dataFolder = Path.Combine(env.ContentRootPath, "data");
-
-            return entorno switch
-            {
-                "Production" => new SqliteMedicoRepository(dataFolder),
-                _ => new JsonMedicoRepository(dataFolder)
-            };
+            var dataFolder = ObtenerDataFolder(env);
+            return entorno == "Production"
+                ? new SqliteMedicoRepository(dataFolder)
+                : new JsonMedicoRepository(dataFolder);
         }
 
-        public static ICitaRepository CrearCitaRepository(
-            string entorno, IWebHostEnvironment env)
+        public static ICitaRepository CrearCitaRepository(string entorno, IWebHostEnvironment env)
         {
-            var dataFolder = Path.Combine(env.ContentRootPath, "data");
-
-            return entorno switch
-            {
-                "Production" => new SqliteCitaRepository(dataFolder),
-                _ => new JsonCitaRepository(dataFolder)
-            };
+            var dataFolder = ObtenerDataFolder(env);
+            return entorno == "Production"
+                ? new SqliteCitaRepository(dataFolder)
+                : new JsonCitaRepository(dataFolder);
         }
     }
 }
