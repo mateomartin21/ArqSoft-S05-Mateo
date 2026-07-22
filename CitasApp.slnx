@@ -1,7 +1,8 @@
 <Solution>
   <Project Path="../CitasApp.Api/CitasApp.Api.csproj" Id="b7ee8913-6be8-4d88-ac6d-bdcf407513a2" />
-  <Project Path="../CitasApp.Application/CitasApp.Application.csproj" Id="b9dbde68-ac6d-47f5-a9bf-c14d4eea2ecc" />
+  <Project Path="CitasApp.Application/CitasApp.Application.csproj" Id="b9dbde68-ac6d-47f5-a9bf-c14d4eea2ecc" />
   <Project Path="CitasApp.Domain/CitasApp.Domain.csproj" />
   <Project Path="CitasApp.Infrastructure/CitasApp.Infrastructure.csproj" />
+  <Project Path="CitasApp.Tests/CitasApp.Tests.csproj" />
   <Project Path="CitasApp.Web.csproj" />
 </Solution>
